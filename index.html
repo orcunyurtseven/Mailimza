@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<head>
+  <title>Imza Olusturma</title>
+</head>
+<body>
+  <style>
+
+    .mail-imza {
+      padding-top: 12px;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .baslik {
+      color: blue;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+    }
+
+    .form-container .input-field {
+      margin: 10px 0;
+      padding: 5px;
+    }
+
+  </style>
+
+  <p class="baslik">Otomatik Mail İmzası</p>
+
+  <div class="form-container">
+    <label for="name">Isim</label>
+    <input type="text" id="name" class="input-field" placeholder="Isim" />
+
+    <label for="surname">Soyisim</label>
+    <input type="text" id="surname" class="input-field" />
+
+    <label for="title">Ünvan</label>
+    <input type="text" id="title" class="input-field"  />
+
+    <label for="phone">Telefon</label>
+    <input type="number" id="phone" class="input-field" />
+
+    <label for="mobile">Mobil</label>
+    <input type="number" id="mobile" class="input-field" />
+
+  </div>
+
+  <button onClick="createMailSignature()">Mail İmzası Oluştur</button>
+  <button onClick="clearForm()">Formu Temizle</button>
+  
+  <div id="signature-canvas"></div>
+
+  <script>
+    function createMailSignature() {
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const title = document.getElementById('title').value;
+        const phone = document.getElementById('phone').value;
+        const mobile = document.getElementById('mobile').value;
+
+        const tpl = `<table>
+      <tr>
+        <td width="150px" style="color:6f6f6f">${name} ${surname}</td>
+        <td style="padding-left: 5px">
+          <a href="https://facebook.com">
+            <img
+              id="facebook-logo"
+              src="/image/facebook.jpg"
+              alt="Facebook"
+              style="width: 5px; margin: 0 2px"
+            />
+          </a>
+          <img
+            id="twitter-logo"
+            src="/image/twitter.jpg"
+            alt="Twitter"
+            style="width: 5px; margin: 0 2px"
+          />
+
+          <img
+            id="instagram-logo"
+            src="/image/instagram-2.jpg"
+            alt="Instagram"
+            style="width: 5px; margin: 0 2px"
+          />
+
+          <img
+            id="linkedin-logo"
+            src="/image/linkedin-2.jpg"
+            alt="Linkedin"
+            style="width: 5px; margin: 0 2px"
+          />
+
+          <img
+            id="youtube-logo"
+            src="/image/youtube.jpg"
+            alt="Youtube"
+            style="width: 5px; margin: 0 2px"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td width="150px" style="color: #c0c0c0" style="opacity: 45px" >${title} </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="width: 150px; display: flex;"><img src="image/cetur.jpg" class="logo"  width="150px";/></td>
+        <td style="padding-left: 5px">
+          <table>
+            <tr>
+              <td style="padding-bottom: 35px">
+                <img
+                  id="adres-icon"
+                  src="/image/adres-icon.jpg"
+                  alt="Adress-icon"
+                  style="width: 15px; margin: 0 2px"
+                />
+              </td>
+              <td style="white-space: break-spaces">Akcaburgaz Mh. 319. Sok. <br />Soytas Plaza No:80/82 D6 <br />34538 Esenyurt/Istanbul</td>
+            </tr>
+            <tr>
+              <td><img
+                  id="telephone-icon"
+                  src="/image/telephone-icon.jpg"
+                  alt="Telephone-icon"
+                  style="width: 15px; margin: 0 0px"
+                /></td>              
+              <td style="white-space: break-spaces">${phone}</td>
+            </tr>
+            <tr>
+              <td><img
+                  id="gsm-icon"
+                  src="/image/gsm-icon.jpg"
+                  alt="gsm-icon"
+                  style="width: 15px; margin: 0 0px"
+                /></td>             
+              <td style="white-space: break-spaces">${mobile}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>`;
+
+    document.getElementById('signature-canvas').innerHTML = tpl;
+    }
+
+    function clearForm() {
+        document.getElementById('name').value = '';
+        document.getElementById('surname').value = '';
+        document.getElementById('title').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('mobile').value = '';
+        document.getElementById('signature-canvas').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
